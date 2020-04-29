@@ -10,6 +10,18 @@
                     <form method="POST" action="{{ route('login') }}">
                         {{ csrf_field() }}
 
+                        @if ($message = Session::get('success'))
+                            <div class="alert alert-success">
+                                <p>{{ $message }}</p>
+                            </div>
+                        @endif
+
+                        @if ($message = Session::get('warning'))
+                            <div class="alert alert-success">
+                                <p>{{ $message }}</p>
+                            </div>
+                        @endif
+
                         <div class="form-group{{ $errors->has('email') ? ' has-error' : '' }}">
                             <label for="email">Email:</label>
                             <input id="email" type="email" class="form-control" placeholder="Enter email" name="email" value="{{ old('email') }}" required autofocus>
