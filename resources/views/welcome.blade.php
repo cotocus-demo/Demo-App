@@ -1,9 +1,10 @@
 <!doctype html>
-<html lang="{{ app()->getLocale() }}">
+<!-- The lang attribute specifies the language of the element's content. -->
+<html lang="{{ app()->getLocale() }}"> 
     <head>
-        <meta charset="utf-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta charset="utf-8"><!-- Meta Charset. ... Simply put, when you declare the "charset" as "UTF-8", you are telling your browser to use the UTF-8 character encoding, which is a method of converting your typed characters into machine-readable code -->
+        <meta http-equiv="X-UA-Compatible" content="IE=edge"><!-- it will make this file supported for older version of Internet explorer -->s
+        <meta name="viewport" content="width=device-width, initial-scale=1"><!-- viewport-> user's visible area of a web page to make it responsive. it was a quick fix -->
 
         <title>Laravel</title>
 
