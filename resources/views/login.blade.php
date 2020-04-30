@@ -10,7 +10,7 @@
                     <form method="POST" action="{{ route('login') }}">
                         {{ csrf_field() }}
 
-                        @if ($message = Session::get('success'))
+                        @if ($message = Session::get('Success'))
                             <div class="alert alert-success">
                                 <p>{{ $message }}</p>
                             </div>
