@@ -8,7 +8,7 @@
                 <div class="card-body">             
 
                     <h2>Register</h2>
-                    <div class="panel panel-default">
+                    <div>
                         <form class="form-horizontal" method="POST" action="{{ route('register') }}">
                             {{ csrf_field() }}
 

@@ -12,7 +12,9 @@ return [
     | any other location as required by the application or its packages.
     |
     */
-
+    'senderEmail' => env('MAIL_FROM', 'deepak.cotocus@gmail.com'),
+    'senderName' => env('MAIL_FROM_NAME', 'Deepak Kumar Gupta'),
+    
     'name' => env('APP_NAME', 'Laravel'),
 
     /*

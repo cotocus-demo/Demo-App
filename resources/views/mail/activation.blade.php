@@ -1,2 +1,2 @@
-Welcome, {{ $name }}
-Please active your account : {{ url('user/activation', $link) }}
+Welcome, {{ $emailParams->usersName }}
+Please activate your account : {{ url('user/activation', $emailParams->link) }}

@@ -3,7 +3,7 @@
 <html lang="{{ app()->getLocale() }}"> 
     <head>
         <meta charset="utf-8"><!-- Meta Charset. ... Simply put, when you declare the "charset" as "UTF-8", you are telling your browser to use the UTF-8 character encoding, which is a method of converting your typed characters into machine-readable code -->
-        <meta http-equiv="X-UA-Compatible" content="IE=edge"><!-- it will make this file supported for older version of Internet explorer -->s
+        <meta http-equiv="X-UA-Compatible" content="IE=edge"><!-- it will make this file supported for older version of Internet explorer -->
         <meta name="viewport" content="width=device-width, initial-scale=1"><!-- viewport-> user's visible area of a web page to make it responsive. it was a quick fix -->
 
         <title>Laravel</title>
@@ -69,18 +69,18 @@
         <div class="flex-center position-ref full-height">
             @if (Route::has('login'))
                 <div class="top-right links">
-                    @auth
+                    @auth   <!-- to check the current user is authenticated or not -->
                         <a href="{{ url('/home') }}">Home</a>
                     @else
                         <a href="{{ route('login') }}">Login</a>
                         <a href="{{ route('register') }}">Register</a>
                     @endauth
                 </div>
-            @endif
+            @endif  
 
             <div class="content">
                 <div class="title m-b-md">
-                    Laravel
+                    Demo App
                 </div>
 
                 <div class="links">

@@ -11,6 +11,9 @@ use DB;
 use Mail;
 use Illuminate\Http\Request;
 use Illuminate\Auth\Events\Registered;
+use App\Mail\UserActivationLinkMail;
+
+use Illuminate\Support\Facades\Log;
 
 class RegisterController extends Controller
 {
@@ -76,6 +79,7 @@ class RegisterController extends Controller
 
     public function register(Request $request)
     {
+        log::info("i am inside RegisterController->register()");
         // $this->validator($request->all())->validate();
 
         // event(new Registered($user = $this->create($request->all())));
@@ -89,16 +93,35 @@ class RegisterController extends Controller
         $validator = $this->validator($input);
 
         if ($validator->passes()){
-            $user = $this->create($input)->toArray();
+            $user = $this->create($input)->toArray(); 
+            // $user will have this value after execution of line:92  => ['id'=>'1', name' => 'Deepak','email' => 'deepak@gmail.com','password' => 'dk123']
+
             $user['link'] = str_random(30);
+            // $user will have this value after execution of line:92  => ['id'=>'1', name' => 'Deepak','email' => 'deepak@gmail.com','password' => 'dk123', 'link' => 'mhvejwfkwjnfejhwjdwf']
+
+            $emailParams = new \stdClass(); //need to be explored
+            $emailParams->usersEmail = $user['email'];
+            $emailParams->usersName = $user['name'];
+            $emailParams->link = $user['link'];
+            $emailParams->subject = "activate user of Demo-app - Activation Code";
+
+
 
             DB::table('users_activations')->insert(['id_user' => $user['id'], 'token' => $user['link']]);
-            Mail::send('mail.activation', $user, function($message) use ($user) {
-                $message->to($user['email']);
-                $message->subject('activate user of Demp-app - Activation Code');
-            });
 
-            return redirect()->to('login')->with('Success', "We sent activation code, please check your email");
+            log::info("i am inside RegisterController->register()->before mail function");
+
+            Mail::to($emailParams->usersEmail)->send(new UserActivationLinkMail($emailParams));
+
+            log::info("i am inside RegisterController->register()->after mail function");
+
+            // Mail::send('mail.activation', $user, function($message) use ($user) {
+            //     $message->to($user['email']);
+            //     $message->subject('activate user of Demo-app - Activation Code');
+            // }); 
+
+            return redirect()->to('login')->with('Success', "Activation code sent to your email! ");
+            // here i am going to redirect to an url '/login' with a variable 'Success' which is having a message 
 
         }
         return back()->with('Error', $validator->errors());
@@ -109,13 +132,13 @@ class RegisterController extends Controller
         if (!is_null($check)) {
             $user = User::find($check->id_user);
             if ($user->is_activated == 1){
-                return redirect()->to('login')->with('Success', "User are already activated");
+                return redirect()->to('login')->with('Success', "User is already activated");
             }
 
             $user->update(['is_activated' => 1]);
             DB::table('users_activations')->where('token', $token)->delete();
 
-            return redirect()->to('password/reset')->with('Success', "user active successfully");
+            return redirect()->to('password/reset')->with('Success', "user activated successfully");
             // return redirect()->to('login')->with('Success', "user active successfully");
         }
 

@@ -24,9 +24,11 @@
 
                         <div class="form-group{{ $errors->has('email') ? ' has-error' : '' }}">
                             <label for="email">Email:</label>
-                            <input id="email" type="email" class="form-control" placeholder="Enter email" name="email" value="{{ old('email') }}" required autofocus>
+                            <input id="email" type="email" class="form-control" placeholder="Enter email" name="email" required>
 
-                            @if ($errors->has('email'))
+<!-- $errors is a globle variable in Session Class -->
+
+                            @if ($errors->has('email')) 
                                     <span class="help-block">
                                         <strong>{{ $errors->first('email') }}</strong>
                                     </span>
@@ -37,7 +39,7 @@
 
                         <div class="form-group{{ $errors->has('password') ? ' has-error' : '' }}">
 
-                            <label for="password" class="col-md-4 control-label">Password</label>
+                            <label for="password">Password</label>
                             <input id="pwd" type="password" class="form-control" name="password" placeholder="Enter password" required>
 
                                 @if ($errors->has('password'))
@@ -50,7 +52,7 @@
 
                         <div class="form-group form-check">
                             <label class="form-check-label">
-                                <input class="form-check-input" type="checkbox" name="remember" {{ old('remember') ? 'checked' : '' }}> Remember me
+                                <input class="form-check-input" type="checkbox" name="remember{{ old('remember') ? 'checked' : '' }}"> Remember me
                             </label>
                         </div>
 
