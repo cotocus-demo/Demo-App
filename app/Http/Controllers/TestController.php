@@ -27,7 +27,7 @@ class TestController extends Controller
             $emailParams->usersName = $this->name;
             $emailParams->usersEmail = $this->email;
            
-            $emailParams->subject = "activate user of Demo-app - Activation Code";
+            $emailParams->subject = "Testing Email sending feature";
 
             Mail::to($emailParams->usersEmail)->send(new TestEmailSender($emailParams)); 
 

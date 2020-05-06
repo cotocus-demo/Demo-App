@@ -103,7 +103,7 @@ class RegisterController extends Controller
             $emailParams->usersEmail = $user['email'];
             $emailParams->usersName = $user['name'];
             $emailParams->link = $user['link'];
-            $emailParams->subject = "Testing Email sending feature";
+            $emailParams->subject = "Click activation code to activate account";
 
 
 
@@ -115,10 +115,7 @@ class RegisterController extends Controller
 
             log::info("i am inside RegisterController->register()->after mail function");
 
-            // Mail::send('mail.activation', $user, function($message) use ($user) {
-            //     $message->to($user['email']);
-            //     $message->subject('activate user of Demo-app - Activation Code');
-            // }); 
+            
 
             return redirect()->to('login')->with('Success', "Activation code sent to your email! ");
             // here i am going to redirect to an url '/login' with a variable 'Success' which is having a message 
@@ -139,7 +136,7 @@ class RegisterController extends Controller
             DB::table('users_activations')->where('token', $token)->delete();
 
             return redirect()->to('password/reset')->with('Success', "user activated successfully");
-            // return redirect()->to('login')->with('Success', "user active successfully");
+           
         }
 
         return redirect()->to('login')->with('warning', "your token is invalid");
