@@ -15,6 +15,8 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+Route::get('/sendemail', 'TestController@test')->name('sendemail');
+
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');

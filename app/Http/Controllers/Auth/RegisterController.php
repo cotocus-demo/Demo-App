@@ -103,7 +103,7 @@ class RegisterController extends Controller
             $emailParams->usersEmail = $user['email'];
             $emailParams->usersName = $user['name'];
             $emailParams->link = $user['link'];
-            $emailParams->subject = "activate user of Demo-app - Activation Code";
+            $emailParams->subject = "Testing Email sending feature";
 
 
 
