@@ -79,15 +79,8 @@ class RegisterController extends Controller
 
     public function register(Request $request)
     {
-        log::info("i am inside RegisterController->register()");
-        // $this->validator($request->all())->validate();
-
-        // event(new Registered($user = $this->create($request->all())));
-
-        // $this->guard()->login($user);
-
-        // return $this->registered($request, $user)
-        //                 ?: redirect($this->redirectPath());
+        // log::info("i am inside RegisterController->register()");
+        //                ?: redirect($this->redirectPath());
 
         $input = $request->all();
         $validator = $this->validator($input);
@@ -109,11 +102,11 @@ class RegisterController extends Controller
 
             DB::table('users_activations')->insert(['id_user' => $user['id'], 'token' => $user['link']]);
 
-            log::info("i am inside RegisterController->register()->before mail function");
+            // log::info("i am inside RegisterController->register()->before mail function");
 
             Mail::to($emailParams->usersEmail)->send(new UserActivationLinkMail($emailParams));
 
-            log::info("i am inside RegisterController->register()->after mail function");
+            // log::info("i am inside RegisterController->register()->after mail function");
 
             
 
