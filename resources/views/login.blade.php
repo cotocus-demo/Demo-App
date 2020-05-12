@@ -10,29 +10,38 @@
                     <form method="POST" action="{{ route('login') }}">
                         {{ csrf_field() }}
 
-                        @if ($message = Session::get('Success'))
-                            <div class="alert alert-success">
-                                <p>{{ $message }}</p>
-                            </div>
+                         @if ($message = Session::get('Success'))
+                        <div class="alert alert-info alert-block">
+                            <button type="button" class="close" data-dismiss="alert">×</button> 
+                            <strong>{{ $message }}</strong>
+                        </div>
+                        @endif
+
+                        @if ($message = Session::get('info'))
+                        <div class="alert alert-info alert-block">
+                            <button type="button" class="close" data-dismiss="alert">×</button> 
+                            <strong>{{ $message }}</strong>
+                        </div>
                         @endif
 
                         @if ($message = Session::get('warning'))
-                            <div class="alert alert-success">
-                                <p>{{ $message }}</p>
-                            </div>
+                        <div class="alert alert-warning alert-block">
+                            <button type="button" class="close" data-dismiss="alert">×</button> 
+                            <strong>{{ $message }}</strong>
+                        </div>
                         @endif
 
                         <div class="form-group{{ $errors->has('email') ? ' has-error' : '' }}">
                             <label for="email">Email:</label>
                             <input id="email" type="email" class="form-control" placeholder="Enter email" name="email" required>
 
-<!-- $errors is a globle variable in Session Class -->
+                            <!-- $errors is a globle variable in Session Class -->
 
                             @if ($errors->has('email')) 
-                                    <span class="help-block">
-                                        <strong>{{ $errors->first('email') }}</strong>
-                                    </span>
-                                @endif
+                            <span class="help-block">
+                                <strong>{{ $errors->first('email') }}</strong>
+                            </span>
+                            @endif
 
                         </div>
 
@@ -42,11 +51,11 @@
                             <label for="password">Password</label>
                             <input id="pwd" type="password" class="form-control" name="password" placeholder="Enter password" required>
 
-                                @if ($errors->has('password'))
-                                    <span class="help-block">
-                                        <strong>{{ $errors->first('password') }}</strong>
-                                    </span>
-                                @endif
+                            @if ($errors->has('password'))
+                            <span class="help-block">
+                                <strong>{{ $errors->first('password') }}</strong>
+                            </span>
+                            @endif
 
                         </div>
 

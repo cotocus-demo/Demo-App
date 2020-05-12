@@ -30,3 +30,4 @@ check is_activated column of Users table before and after the click of activatio
 **[Check Out for Gmail Email server set up](https://www.devopsschool.com/blog/gmail-email-server-set-up-for-laravel-app/)**
 
 ----
+

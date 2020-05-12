@@ -4,6 +4,8 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
+use Carbon\Carbon;
+
 class CreateUsersActivationsTable extends Migration
 {
     /**
@@ -18,10 +20,7 @@ class CreateUsersActivationsTable extends Migration
             $table->integer('id_user')->unsigned();
             $table->foreign('id_user')->references('id')->on('users')->onDelete('cascade');
             $table->string('token');
-            $table->timestamp('create_at')->default(DB::raw('CURRENT_TIMESTAMP'));
-        });
-        Schema::table('users', function(Blueprint $table){
-            $table->boolean('is_activated')->default(0);
+            $table->timestamps();
         });
     }
 
@@ -33,9 +32,6 @@ class CreateUsersActivationsTable extends Migration
     public function down()
     {
         Schema::dropIfExists('users_activations');
-        Schema::table('users', function(Blueprint $table){
-            $table->dropColumn('is_activated');
-        });
 
     }
 }

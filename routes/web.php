@@ -21,4 +21,8 @@ Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
 
-Route::get('/user/activation/{token}','Auth\RegisterController@userActivation');
+Route::get('/user/activation/{token}','Auth\RegisterController@verifyLinkAndShowActivationForm');
+
+Route::post('/password/set','Auth\RegisterController@setPassword')->name('password.set');
+
+Route::get('/showActivationLinkStatus','Auth\RegisterController@showActivationLinkStatus');
